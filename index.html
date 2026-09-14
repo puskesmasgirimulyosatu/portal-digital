@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <title>e-Portal Digital | Puskesmas Girimulyo I</title>
-<meta name="theme-color" content="#B3261E" id="themeColor">
+<meta name="theme-color" content="#1F7A4D" id="themeColor">
 <meta name="description" content="Portal Terintegrasi Layanan Digital Puskesmas Girimulyo I">
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
@@ -18,32 +18,32 @@
 
 <style>
 :root{
-  --hijau:#B3261E;--hijau-2:#7A1E17;--emas:#B7883C;--emas-terang:#E8CBB0;
-  --bata:#D97706;--teal:#0F766E;--sogan:#64748B;--krem:#F7F3EF;
-  --kertas:#FFFFFF;--garis:#E7DED8;--teks:#2A211E;--teks-muted:#7C6F68;
+  --hijau:#1F7A4D;--hijau-2:#0F4C30;--emas:#C99A2E;--emas-terang:#F0DDB0;
+  --bata:#F2811D;--teal:#0E7C66;--sogan:#64748B;--krem:#F5F7F2;
+  --kertas:#FFFFFF;--garis:#DCE3D7;--teks:#20281F;--teks-muted:#6B7568;
   --panel:rgba(255,255,255,.68);--panel-strong:rgba(255,255,255,.9);
-  --radius:18px;--bayang:0 14px 34px -16px rgba(58,31,23,.28);
-  --utama-accent:var(--hijau);--utama-tint:#F4DAD6;
-  --layanan-accent:var(--bata);--layanan-tint:#FBE7CC;
-  --kepeg-accent:var(--emas);--kepeg-tint:#EFE3CE;
-  --monitor-accent:var(--teal);--monitor-tint:#D3EBE7;
+  --radius:18px;--bayang:0 14px 34px -16px rgba(15,40,25,.28);
+  --utama-accent:var(--hijau);--utama-tint:#D9EFE0;
+  --layanan-accent:var(--bata);--layanan-tint:#FBE3C7;
+  --kepeg-accent:var(--emas);--kepeg-tint:#F3E7C7;
+  --monitor-accent:var(--teal);--monitor-tint:#D2ECE6;
   --keu-accent:var(--sogan);--keu-tint:#E4E9EE;
   --hijau-teks:var(--hijau);
 }
 [data-theme="dark"]{
-  --krem:#1A1210;--kertas:#241A17;--panel:rgba(36,26,23,.78);
-  --panel-strong:#241A17;--garis:#3D2C27;--teks:#F5EDE9;--teks-muted:#B8A79E;
-  --utama-tint:#3A1F1B;--layanan-tint:#3A2410;--kepeg-tint:#362615;
-  --monitor-tint:#123330;--keu-tint:#2A3138;
-  --hijau-teks:#F0A692;
+  --krem:#101913;--kertas:#172219;--panel:rgba(23,34,25,.78);
+  --panel-strong:#172219;--garis:#2B3A2E;--teks:#EAF3EA;--teks-muted:#A9B8A9;
+  --utama-tint:#1E3A28;--layanan-tint:#3A2A12;--kepeg-tint:#3A2E14;
+  --monitor-tint:#123128;--keu-tint:#263028;
+  --hijau-teks:#7FD9A5;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{min-height:100vh;width:100%;overflow-x:hidden;background:var(--krem);color:var(--teks);
 font-family:'Plus Jakarta Sans',sans-serif;line-height:1.5;position:relative;transition:background .25s,color .25s}
 body::before{content:"";position:fixed;inset:0;z-index:-1;background-image:
-radial-gradient(circle at 10% 15%,rgba(179,38,30,.05) 0%,transparent 30%),
-radial-gradient(circle at 90% 85%,rgba(217,119,6,.06) 0%,transparent 32%);
+radial-gradient(circle at 10% 15%,rgba(31,122,77,.06) 0%,transparent 30%),
+radial-gradient(circle at 90% 85%,rgba(242,129,29,.06) 0%,transparent 32%);
 animation:drift 30s ease-in-out infinite alternate}
 @keyframes drift{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-1.5%,1.5%)}}
 @media(prefers-reduced-motion:reduce){body::before{animation:none}}
@@ -68,11 +68,11 @@ padding:calc(14px + env(safe-area-inset-top)) 20px 14px}
 .topbar-title{font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Hero foto — konten biasa, ikut scroll (bukan sticky) */
-.header{position:relative;overflow:hidden;background:linear-gradient(165deg,rgba(179,38,30,.72),rgba(122,30,23,.85)),url('puskesmas-hero.jpg') center 65%/cover no-repeat #7A1E17;color:#fff;
+.header{position:relative;overflow:hidden;background:linear-gradient(165deg,rgba(31,122,77,.72),rgba(15,76,48,.85)),url('puskesmas-hero.jpg') center 65%/cover no-repeat #0F4C30;color:#fff;
 padding:30px 20px 34px;text-align:center}
 .header::before{content:"";position:absolute;inset:-20%;background-image:
-radial-gradient(circle at 15% 20%,rgba(232,180,153,.28),transparent 34%),
-radial-gradient(circle at 85% 85%,rgba(217,119,6,.2),transparent 34%);filter:blur(55px);animation:drift 20s ease-in-out infinite alternate}
+radial-gradient(circle at 15% 20%,rgba(251,217,166,.28),transparent 34%),
+radial-gradient(circle at 85% 85%,rgba(242,129,29,.22),transparent 34%);filter:blur(55px);animation:drift 20s ease-in-out infinite alternate}
 .header::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,253,248,.14) 1px,transparent 1px);background-size:16px 16px;opacity:.5}
 .header-inner{position:relative;z-index:1}
 .icon-btn{width:42px;height:42px;border:1px solid rgba(255,255,255,.25);border-radius:13px;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px);flex-shrink:0}
@@ -531,7 +531,7 @@ footer strong{color:var(--hijau-teks)}
       <input type="text" id="catLabel" placeholder="Contoh: Layanan Publik">
       <label>Warna</label>
       <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
-        <input type="color" id="catColor" value="#B3261E" style="width:52px;height:40px;border:1px solid var(--garis);border-radius:8px;background:var(--panel-strong);cursor:pointer;padding:2px">
+        <input type="color" id="catColor" value="#1F7A4D" style="width:52px;height:40px;border:1px solid var(--garis);border-radius:8px;background:var(--panel-strong);cursor:pointer;padding:2px">
         <span style="font-size:.78rem;color:var(--teks-muted)">Warna aksen kartu & pill filter untuk kategori ini</span>
       </div>
       <p id="catFormError" class="admin-error" style="display:none"></p>
@@ -605,10 +605,10 @@ const DEFAULT_APPS=[
 let APPS=[];
 
 const DEFAULT_CATEGORIES=[
- {key:"utama",label:"Utama",color:"#B3261E",order:0},
- {key:"layanan",label:"Layanan Publik",color:"#D97706",order:1},
- {key:"kepegawaian",label:"Kepegawaian",color:"#B7883C",order:2},
- {key:"monitoring",label:"Monitoring & Evaluasi",color:"#0F766E",order:3},
+ {key:"utama",label:"Utama",color:"#1F7A4D",order:0},
+ {key:"layanan",label:"Layanan Publik",color:"#F2811D",order:1},
+ {key:"kepegawaian",label:"Kepegawaian",color:"#C99A2E",order:2},
+ {key:"monitoring",label:"Monitoring & Evaluasi",color:"#0E7C66",order:3},
  {key:"keuangan",label:"Keuangan",color:"#64748B",order:4}
 ];
 let CATEGORIES=[];
@@ -770,7 +770,7 @@ function applyTheme(theme){
  $("themeIcon").innerHTML=theme==="dark"
  ? `<path d="M21 12.8A8.5 8.5 0 1111.2 3 6.5 6.5 0 0021 12.8z"/>`
  : `<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/>`;
- $("themeColor").content=theme==="dark"?"#1A1210":"#B3261E";
+ $("themeColor").content=theme==="dark"?"#101913":"#1F7A4D";
 }
 const savedTheme=localStorage.getItem(THEME_KEY);
 applyTheme(savedTheme||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
