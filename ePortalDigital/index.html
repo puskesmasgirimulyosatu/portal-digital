@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,user-scalable=no">
+  <title>e-Portal Digital | Puskesmas Girimulyo I</title>
+
+  <meta name="theme-color" content="#166534">
+  <meta name="description" content="Portal Digital Puskesmas Girimulyo I">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Portal Girimulyo I">
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="preconnect" href="https://script.google.com">
+  <link rel="preconnect" href="https://script.googleusercontent.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --green-950:#052e16;
+      --green-900:#14532d;
+      --green-800:#166534;
+      --green-700:#15803d;
+      --green-600:#16a34a;
+      --orange:#f97316;
+      --orange-2:#fb923c;
+      --white:#fff;
+      --slate:#0f172a;
+    }
+
+    html,body{
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      font-family:'Plus Jakarta Sans',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      background:var(--slate);
+    }
+
+    body{position:fixed;inset:0}
+
+    .app-shell{
+      position:fixed;
+      inset:0;
+      width:100vw;
+      height:100dvh;
+      background:#fff;
+      overflow:hidden;
+    }
+
+    iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+      background:#fff;
+      display:block;
+    }
+
+    .loader-screen{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:22px;
+      padding:28px;
+      color:white;
+      background:
+        radial-gradient(circle at 18% 18%,rgba(249,115,22,.22),transparent 28%),
+        radial-gradient(circle at 80% 0%,rgba(34,197,94,.22),transparent 30%),
+        linear-gradient(145deg,#052e16 0%,#14532d 48%,#166534 100%);
+      transition:opacity .35s ease,visibility .35s ease;
+    }
+
+    .loader-screen::before{
+      content:"";
+      position:absolute;
+      width:330px;
+      height:330px;
+      border-radius:50%;
+      border:1px solid rgba(255,255,255,.08);
+      box-shadow:0 0 0 60px rgba(255,255,255,.025),0 0 0 120px rgba(255,255,255,.015);
+      animation:floatRing 4s ease-in-out infinite;
+    }
+
+    @keyframes floatRing{
+      0%,100%{transform:scale(.96);opacity:.7}
+      50%{transform:scale(1.04);opacity:1}
+    }
+
+    .logo-mark{
+      position:relative;
+      z-index:2;
+      width:82px;
+      height:82px;
+      border-radius:25px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,var(--green-600),var(--orange));
+      box-shadow:0 18px 45px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.32);
+      animation:breathe 2.4s ease-in-out infinite;
+    }
+
+    .logo-mark svg{width:42px;height:42px;fill:#fff}
+
+    @keyframes breathe{
+      0%,100%{transform:translateY(0) scale(1)}
+      50%{transform:translateY(-3px) scale(1.045)}
+    }
+
+    .brand{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      max-width:460px;
+    }
+
+    .brand .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:7px 11px;
+      margin-bottom:14px;
+      border:1px solid rgba(255,255,255,.15);
+      border-radius:999px;
+      background:rgba(255,255,255,.07);
+      backdrop-filter:blur(10px);
+      font-size:.7rem;
+      font-weight:800;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+      color:#fed7aa;
+    }
+
+    .brand h1{
+      font-family:'Sora',sans-serif;
+      font-size:clamp(1.55rem,4vw,2rem);
+      line-height:1.18;
+      font-weight:800;
+      letter-spacing:-.03em;
+      color:#fff;
+    }
+
+    .brand p{
+      margin-top:8px;
+      font-size:.84rem;
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:#bbf7d0;
+    }
+
+    .progress{
+      position:relative;
+      z-index:2;
+      width:min(220px,58vw);
+      height:4px;
+      border-radius:99px;
+      overflow:hidden;
+      background:rgba(255,255,255,.14);
+    }
+
+    .progress-bar{
+      width:38%;
+      height:100%;
+      border-radius:99px;
+      background:linear-gradient(90deg,#22c55e,#fb923c);
+      box-shadow:0 0 16px rgba(251,146,60,.5);
+      animation:slide 1.05s ease-in-out infinite;
+    }
+
+    @keyframes slide{
+      0%{transform:translateX(-130%)}
+      100%{transform:translateX(430%)}
+    }
+
+    .loader-hint{
+      position:relative;
+      z-index:2;
+      min-height:20px;
+      font-size:.75rem;
+      color:#d1fae5;
+      opacity:0;
+      transition:opacity .35s ease;
+      text-align:center;
+    }
+
+    .loader-hint.show{opacity:.82}
+    .fade-out{opacity:0;visibility:hidden;pointer-events:none}
+
+    .back-home{
+      position:fixed;
+      right:calc(16px + env(safe-area-inset-right,0px));
+      bottom:calc(16px + env(safe-area-inset-bottom,0px));
+      width:50px;
+      height:50px;
+      z-index:99999;
+      display:grid;
+      place-items:center;
+      border-radius:18px;
+      color:white;
+      text-decoration:none;
+      background:linear-gradient(135deg,rgba(20,83,45,.94),rgba(21,128,61,.92));
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:0 12px 30px rgba(5,46,22,.32);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      transition:transform .22s ease,box-shadow .22s ease;
+    }
+
+    .back-home::after{
+      content:"";
+      position:absolute;
+      right:-2px;
+      top:-2px;
+      width:13px;
+      height:13px;
+      border-radius:50%;
+      background:var(--orange);
+      border:3px solid #fff;
+    }
+
+    .back-home:hover{
+      transform:translateY(-3px);
+      box-shadow:0 16px 34px rgba(5,46,22,.4);
+    }
+
+    .back-home svg{width:22px;height:22px;fill:currentColor}
+
+    @media(max-width:600px){
+      .logo-mark{width:72px;height:72px;border-radius:22px}
+      .logo-mark svg{width:37px;height:37px}
+      .back-home{width:46px;height:46px;border-radius:16px}
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-shell">
+    <section class="loader-screen" id="loader" aria-live="polite">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M10 3h4a1 1 0 0 1 1 1v5h5a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-5v5a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-5H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1h5V4a1 1 0 0 1 1-1z"/>
+        </svg>
+      </div>
+
+      <div class="brand">
+        <div class="eyebrow">Portal Digital 2026</div>
+        <h1>e-Portal Digital</h1>
+        <p>Puskesmas Girimulyo I</p>
+      </div>
+
+      <div class="progress" aria-hidden="true">
+        <div class="progress-bar"></div>
+      </div>
+
+      <div class="loader-hint" id="loaderHint">
+        Menyiapkan layanan digital Puskesmas Girimulyo I...
+      </div>
+    </section>
+
+    <iframe
+      id="appFrame"
+      src="https://script.google.com/macros/s/AKfycbxrPFHST7KkZHBScjkfY3d3AxKD6EsIDY-JCyOKx1EDuMJzmGg4hweaiw0MonImdZ1a/exec"
+      title="Portal Digital Puskesmas Girimulyo I"
+      allow="geolocation *; camera *; microphone *; clipboard-read *; clipboard-write *; fullscreen *"
+      sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation allow-forms allow-modals allow-downloads"
+      loading="eager"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+      onload="hideLoader()">
+    </iframe>
+  </main>
+
+  <a href="./" class="back-home" id="backHomeBtn" title="Kembali ke halaman utama" aria-label="Kembali ke halaman utama">
+    <svg viewBox="0 0 24 24">
+      <path d="M12 3.1 2.6 11a1 1 0 0 0 .64 1.77H5v7.13a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-7.13h1.76A1 1 0 0 0 21.4 11L12 3.1z"/>
+    </svg>
+  </a>
+
+  <script>
+    let loaderHidden = false;
+
+    function hideLoader(){
+      if(loaderHidden) return;
+      loaderHidden = true;
+      document.getElementById('loader').classList.add('fade-out');
+    }
+
+    setTimeout(() => {
+      if(!loaderHidden){
+        document.getElementById('loaderHint').classList.add('show');
+      }
+    }, 5000);
+
+    setTimeout(hideLoader, 15000);
+
+    document.getElementById('backHomeBtn').addEventListener('click', function(e){
+      e.preventDefault();
+      const url = this.href;
+      const standalone =
+        (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+        window.navigator.standalone === true;
+
+      if(window.opener && !standalone){
+        try{ window.close(); }catch(err){}
+      }
+      location.href = url;
+    });
+
+    window.addEventListener('message', function(ev){
+      const d = ev.data;
+      if(!d || typeof d !== 'object') return;
+
+      const okOrigin = /https:\/\/([a-z0-9-]+\.)*(googleusercontent\.com|google\.com)$/i.test(ev.origin || '');
+      if(!okOrigin) return;
+
+      if(d.type === 'portal-shell-ping'){
+        try{ ev.source.postMessage({type:'portal-shell-pong'}, '*'); }catch(e){}
+        return;
+      }
+
+      if(d.type === 'portal-open-url'){
+        const url = String(d.url || '').trim();
+        if(!/^https?:\/\//i.test(url)) return;
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(() => a.remove(), 100);
+      }
+    });
+
+    if('serviceWorker' in navigator){
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js').catch(console.warn);
+      });
+    }
+  </script>
+</body>
+</html>
